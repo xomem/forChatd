@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data;
 
 namespace WpfApp
 {
@@ -20,11 +21,13 @@ namespace WpfApp
     /// </summary>
     public partial class SimpleQueryResult : Page
     {
-
-
-        public SimpleQueryResult()
+        public SimpleQueryResult(DataTable dt)
         {
             InitializeComponent();
+            
+            SQRDataGridXAML.ItemsSource = dt.DefaultView;
+            SQRDataGridXAML.IsReadOnly = true;
+            SQRDataGridXAML.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
 
 

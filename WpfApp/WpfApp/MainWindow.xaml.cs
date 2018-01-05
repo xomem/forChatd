@@ -37,7 +37,7 @@ namespace WpfApp
             //MainFrame.Content = new MainMenu();
             MainMenu = new MainMenu(this);
             MainFrame.Navigate(MainMenu);
-            Query.connectDB(this);
+            //Query.connectDB(this);
             //string ConnectionAdres = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Edward\source\repos\WpfApp\WpfApp\MainDatabase.mdf;Integrated Security=True";
             //SqlConnection = new SqlConnection(ConnectionAdres);
 
@@ -75,6 +75,14 @@ namespace WpfApp
         {
             MessageBox.Show(test);
         }
+        public void successfulConnection()
+        {
+            Status.Content = "Запрос выполнен успешно";
+        }
+        public void errorConnection(Exception ex)
+        {
+            Status.Content = "Ошибка выполнения запроса";
+        }
         public void connectError(Exception ex)
         {
             MessageBox.Show(ex.Message.ToString(), ex.Source.ToString(), MessageBoxButton.OK, MessageBoxImage.Error);
@@ -85,7 +93,7 @@ namespace WpfApp
             //{
             //    SqlConnection.Close();
             //}
-            Query.closeConnect();
+            //Query.closeConnect();
         }
     }
 }

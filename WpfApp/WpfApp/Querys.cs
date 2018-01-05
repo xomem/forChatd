@@ -5,78 +5,141 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using System.Data.SqlClient;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Data;
 using System.Windows.Controls;
+using System.Windows;
+using System.Windows.Data;
+
 
 namespace WpfApp
 {
     public class Querys
     {
-        MainWindow MainWin;
-        private SimpleQueryResult SimpleQueryResult;
+        //MainWindow MainWin;
+        //private SimpleQueryResult SimpleQueryResult;
+        //SqlConnection SqlConnection;
 
-        SqlConnection SqlConnection;
-        public async void connectDB(MainWindow MainWin)
+        static string ConnectionAdres = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Edward\source\repos\WpfApp\WpfApp\MainDatabase.mdf;Integrated Security=True";
+
+        public static DataTable readEmployers()
         {
-            this.MainWin = MainWin;
-            string ConnectionAdres = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Edward\source\repos\WpfApp\WpfApp\MainDatabase.mdf;Integrated Security=True";
-            SqlConnection = new SqlConnection(ConnectionAdres);
-
-            await SqlConnection.OpenAsync();
-
-            SqlDataReader SQLDReader = null;
-
-            SqlCommand GetAllEmployCommand = new SqlCommand("SELECT * FROM [employment]", SqlConnection);
-            SimpleQueryResult = new SimpleQueryResult();
-
-
-            
+            var mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
             try
             {
-                SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM [employment]", SqlConnection);
+                SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM [employment]", ConnectionAdres);
                 DataTable dt = new DataTable("Call Reciept");
                 da.Fill(dt);
-
-                SimpleQueryResult.SQRDataGridXAML.ItemsSource = dt.DefaultView;
-
-                SQLDReader = await GetAllEmployCommand.ExecuteReaderAsync();
-                MainWin.Status.Content = "Подключено к БД";
-
-                while (await SQLDReader.ReadAsync())
-                {
-                    string test = Convert.ToString(SQLDReader["ID"]) + Convert.ToString(SQLDReader["surname"]) + Convert.ToString(SQLDReader["name"]) + Convert.ToString(SQLDReader["patronymic"]);
-                    //SimpleQueryResult.SQRDataGridXAML.ItemsSource = ;
-
-                    MainWin.checkConnect(test);
-                }
-
+                mainWindow.successfulConnection();
+                return dt;
             }
             catch (Exception ex)
             {
-                MainWin.connectError(ex);
-                MainWin.Status.Content = "Ошибка подключения к БД" + " - " + ex;
-            }
-            finally
-            {
-                if (SQLDReader != null)
-                {
-                    SQLDReader.Close();
-                }
+                mainWindow.errorConnection(ex);
+                return null;
             }
         }
-
-        public void closeConnect()
+        public static DataTable readHDD()
         {
-            if (SqlConnection != null && SqlConnection.State != ConnectionState.Closed)
+            var mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            try
             {
-                SqlConnection.Close();
-                MainWin.Status.Content = "Подключение закрыто";
+                SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM [hardDrive]", ConnectionAdres);
+                DataTable dt = new DataTable("Call Reciept");
+                da.Fill(dt);
+                mainWindow.successfulConnection();
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                mainWindow.errorConnection(ex);
+                return null;
+            }
+        }
+        public static DataTable readTech()
+        {
+            var mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            try
+            {
+                SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM [technic]", ConnectionAdres);
+                DataTable dt = new DataTable("Call Reciept");
+                da.Fill(dt);
+                mainWindow.successfulConnection();
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                mainWindow.errorConnection(ex);
+                return null;
+            }
+        }
+        public static DataTable readSysCharacter()
+        {
+            var mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            try
+            {
+                SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM [systemCharacteristic]", ConnectionAdres);
+                DataTable dt = new DataTable("Call Reciept");
+                da.Fill(dt);
+                mainWindow.successfulConnection();
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                mainWindow.errorConnection(ex);
+                return null;
             }
         }
 
-        public void allEmployQuery()
-        {
 
-        }
+
+        //public async void connectDB(MainWindow MainWin)
+        //{
+        //    this.MainWin = MainWin;
+        //    string ConnectionAdres = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Edward\source\repos\WpfApp\WpfApp\MainDatabase.mdf;Integrated Security=True";
+        //    SqlConnection = new SqlConnection(ConnectionAdres);
+
+        //    await SqlConnection.OpenAsync();
+
+        //    SqlDataReader SQLDReader = null;
+
+        //    SqlCommand GetAllEmployCommand = new SqlCommand("SELECT * FROM [employment]", SqlConnection);
+
+
+
+        //    try
+        //    {
+        //        MainWin.Status.Content = "Подключено к БД";
+
+        //        while (await SQLDReader.ReadAsync())
+        //        {
+        //            string test = Convert.ToString(SQLDReader["ID"]) + Convert.ToString(SQLDReader["surname"]) + Convert.ToString(SQLDReader["name"]) + Convert.ToString(SQLDReader["patronymic"]);
+        //            MainWin.checkConnect(test);
+        //        }
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MainWin.connectError(ex);
+        //        MainWin.Status.Content = "Ошибка подключения к БД" + " - " + ex;
+        //    }
+        //    finally
+        //    {
+        //        if (SQLDReader != null)
+        //        {
+        //            SQLDReader.Close();
+        //        }
+        //    }
+        //}
+
+        //public void closeConnect()
+        //{
+        //    if (SqlConnection != null && SqlConnection.State != ConnectionState.Closed)
+        //    {
+        //        SqlConnection.Close();
+        //        MainWin.Status.Content = "Подключение закрыто";
+        //    }
+        //}
     }
 }

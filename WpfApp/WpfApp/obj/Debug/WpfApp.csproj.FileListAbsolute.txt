@@ -24,3 +24,5 @@ C:\Users\Edward\source\repos\WpfApp\WpfApp\obj\Debug\SimpleQueryResult.g.cs
 C:\Users\Edward\source\repos\WpfApp\WpfApp\obj\Debug\SimpleQueryResult.baml
 C:\Users\Edward\source\repos\WpfApp\WpfApp\obj\Debug\MainMenu.g.cs
 C:\Users\Edward\source\repos\WpfApp\WpfApp\obj\Debug\MainMenu.baml
+C:\Users\Edward\source\repos\WpfApp\WpfApp\obj\Debug\Search.g.cs
+C:\Users\Edward\source\repos\WpfApp\WpfApp\obj\Debug\Search.baml

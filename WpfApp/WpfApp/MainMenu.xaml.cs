@@ -26,7 +26,7 @@ namespace WpfApp
         private SimpleQueryResult SimpleQueryResult;
 
         Window MainWin;
-
+        MainWindow mainWindow = new MainWindow();
         public MainMenu(Window MainWin)
         {
             InitializeComponent();
@@ -34,58 +34,52 @@ namespace WpfApp
         }
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
-            MainWin.Title = "Главное меню";
+            MainWin.Title = "Главное меню";      
         }
         private void allEmploy_Click(object sender, RoutedEventArgs e)
         {
             //MainFrame.Content = new SimpleQueryResult();
-            SimpleQueryResult = new SimpleQueryResult();
+            SimpleQueryResult = new SimpleQueryResult(Querys.readEmployers());
             NavigationService.Navigate(SimpleQueryResult);
             MainWin.Title = "Все сотрудники";
-            //SimpleQueryResult.SQRDataGridXAML.Columns[0].Header = "ID сотрудника";
-            //SimpleQueryResult.SQRDataGridXAML.Columns[1].Header = "Имя";
-            //SimpleQueryResult.SQRDataGridXAML.Columns[2].Header = "Фамилия";
-            //SimpleQueryResult.SQRDataGridXAML.Columns[3].Header = "Отчество";
-
         }
 
 
 
         private void allHDD_Click(object sender, RoutedEventArgs e)
         {
-            SimpleQueryResult = new SimpleQueryResult();
+            //SimpleQueryResult = new SimpleQueryResult();
+            SimpleQueryResult = new SimpleQueryResult(Querys.readHDD());
             NavigationService.Navigate(SimpleQueryResult);
             MainWin.Title = "Все жёсткие диски";
-            SimpleQueryResult.SQRDataGridXAML.Columns[0].Header = "ID ПК";
-            SimpleQueryResult.SQRDataGridXAML.Columns[1].Header = "Фирма";
-            SimpleQueryResult.SQRDataGridXAML.Columns[2].Header = "Серийный номер";
-            SimpleQueryResult.SQRDataGridXAML.Columns[3].Header = "Объем";
         }
 
         private void allTech_Click(object sender, RoutedEventArgs e)
         {
-            SimpleQueryResult = new SimpleQueryResult();
+            //SimpleQueryResult = new SimpleQueryResult();
+            SimpleQueryResult = new SimpleQueryResult(Querys.readTech());
             NavigationService.Navigate(SimpleQueryResult);
             MainWin.Title = "Вся техника";
-            SimpleQueryResult.SQRDataGridXAML.Columns[0].Header = "ID Технкии";
-            SimpleQueryResult.SQRDataGridXAML.Columns[1].Header = "Тип";
-            SimpleQueryResult.SQRDataGridXAML.Columns[2].Header = "Фирма";
-            SimpleQueryResult.SQRDataGridXAML.Columns[3].Header = "Марка";
-            SimpleQueryResult.SQRDataGridXAML.Columns[4].Header = "Номер ЦСО";
-            SimpleQueryResult.SQRDataGridXAML.Columns[5].Header = "Серийный номер";
         }
 
         private void allCharac_Click(object sender, RoutedEventArgs e)
         {
-            SimpleQueryResult = new SimpleQueryResult();
+            //SimpleQueryResult = new SimpleQueryResult();
+            SimpleQueryResult = new SimpleQueryResult(Querys.readSysCharacter());
             NavigationService.Navigate(SimpleQueryResult);
             MainWin.Title = "Вся характиристики";
-            SimpleQueryResult.SQRDataGridXAML.Columns[0].Header = "ID Технкии";
-            SimpleQueryResult.SQRDataGridXAML.Columns[1].Header = "Фирма процессора";
-            SimpleQueryResult.SQRDataGridXAML.Columns[2].Header = "Модель процессора";
-            SimpleQueryResult.SQRDataGridXAML.Columns[3].Header = "Оперативная память";
-            SimpleQueryResult.SQRDataGridXAML.Columns[4].Header = "Разрядность";
-            SimpleQueryResult.SQRDataGridXAML.Columns[5].Header = "Операционная система";
+        }
+
+        private void addEmploy_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void findEmployByRoom_Click(object sender, RoutedEventArgs e)
+        {
+            Search searchWindow = new Search();
+            searchWindow.TitleLabel.Content = "Поиск сотрудника по кабинету";
+            searchWindow.Show();
         }
     }
 }

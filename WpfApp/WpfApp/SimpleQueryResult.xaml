@@ -9,13 +9,7 @@
       Title="SimpleQueryResult">
 
     <Grid Width="1064" Height="571" VerticalAlignment="Bottom" Background="White">
-        <DataGrid ItemsSource="{Binding}" AutoGenerateColumns="True" x:Name="SQRDataGridXAML" HorizontalAlignment="Left" Height="441" Margin="10,89,0,0" VerticalAlignment="Top" Width="1044">
-            <!--<DataGrid.Columns>
-                <DataGridTextColumn Header="ID сотрудника"/>
-                <DataGridTextColumn Header="Имя" Width="100"/>
-                <DataGridTextColumn Header="Фамилия" Width="120"/>
-                <DataGridTextColumn Header="Отчество" Width="*"/>
-            </DataGrid.Columns>-->
+        <DataGrid ItemsSource="{Binding}" CanUserAddRows="False" AutoGenerateColumns="True" x:Name="SQRDataGridXAML" HorizontalAlignment="Left" Height="441" Margin="10,89,0,0" VerticalAlignment="Top" Width="1044">
         </DataGrid>
 
 
@@ -25,7 +19,5 @@
                 <!--<TextBlock Text="&lt; Назад" TextWrapping="Wrap" TextAlignment="Center"/>-->
             </StackPanel>
         </Button>
-
-
     </Grid>
 </Page>

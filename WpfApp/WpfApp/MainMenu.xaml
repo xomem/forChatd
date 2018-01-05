@@ -10,7 +10,7 @@
 
     <Grid Width="1064" Height="571" VerticalAlignment="Bottom" Background="White" Loaded="Grid_Loaded">
         <Label Content="Добавить"  Margin="106,37,872,0" VerticalAlignment="Top" Height="33" FontSize="16"/>
-        <Button x:Name="addEmploy" Content="Добавить сотрудника" HorizontalAlignment="Left" Margin="51,94,0,0" VerticalAlignment="Top" Width="208" Height="40" FontSize="16" Cursor="Hand" />
+        <Button x:Name="addEmploy" Content="Добавить сотрудника" HorizontalAlignment="Left" Margin="51,94,0,0" VerticalAlignment="Top" Width="208" Height="40" FontSize="16" Cursor="Hand" Click="addEmploy_Click" />
         <Button x:Name="addTech" Content="Добавить технику" HorizontalAlignment="Left" Margin="51,162,0,0" VerticalAlignment="Top" Width="208" Height="40" FontSize="16" Cursor="Hand"/>
         <Button x:Name="addSysCharacter"    HorizontalAlignment="Left" Margin="51,228,0,0" VerticalAlignment="Top" Width="208" Height="66" Cursor="Hand">
             <TextBlock Text="Добавить истемные характеристики"
@@ -29,7 +29,7 @@
             <TextBlock Text="Поиск сотрудника по номеру ЦСО"
                 TextWrapping="Wrap" TextAlignment="Center" FontSize="16"/>
         </Button>
-        <Button x:Name="findEmployByRoom"    HorizontalAlignment="Left" Margin="306,241,0,0" VerticalAlignment="Top" Width="208" Height="53" Cursor="Hand">
+        <Button x:Name="findEmployByRoom"    HorizontalAlignment="Left" Margin="306,241,0,0" VerticalAlignment="Top" Width="208" Height="53" Cursor="Hand" Click="findEmployByRoom_Click">
             <TextBlock Text="Поиск сотрудника по номеру кабинета"
                 TextWrapping="Wrap" TextAlignment="Center" FontSize="16"/>
         </Button>
