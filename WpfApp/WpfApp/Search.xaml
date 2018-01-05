@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
-        Title="Поиск" Height="180" Width="450" WindowStartupLocation="CenterScreen">
+        Title="Поиск" Height="180" Width="450" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <Label x:Name="TitleLabel" Content="Label" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="18"/>
         <TextBox HorizontalAlignment="Left" Cursor="Hand" Height="32" Margin="10,49,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="340" FontSize="18"/>

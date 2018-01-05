@@ -29,6 +29,7 @@ namespace WpfApp
             try
             {
                 SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM [employment]", ConnectionAdres);
+                //SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM [employment] WHERE ID = 9", ConnectionAdres);
                 DataTable dt = new DataTable("Call Reciept");
                 da.Fill(dt);
                 mainWindow.successfulConnection();
