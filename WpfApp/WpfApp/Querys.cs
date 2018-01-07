@@ -22,7 +22,24 @@ namespace WpfApp
         //SqlConnection SqlConnection;
 
         static string ConnectionAdres = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Edward\source\repos\WpfApp\WpfApp\MainDatabase.mdf;Integrated Security=True";
-
+        public static DataTable employByRoom(string roomNumber)
+        {
+            var mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            try
+            {
+                //SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM [employment]", ConnectionAdres);
+                SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM [employment] WHERE = " + roomNumber, ConnectionAdres);
+                DataTable dt = new DataTable("Call Reciept");
+                da.Fill(dt);
+                mainWindow.successfulConnection();
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                mainWindow.errorConnection(ex);
+                return null;
+            }
+        }
         public static DataTable readEmployers()
         {
             var mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();

@@ -17,11 +17,39 @@ namespace WpfApp
     /// <summary>
     /// Interaction logic for Search.xaml
     /// </summary>
+    /// 
+
     public partial class Search : Window
     {
+
         public Search()
         {
             InitializeComponent();
+        }
+        public enum searchType
+        {
+            techByEmploy,
+            employByCSO,
+            employByRoom,
+            hddByEmploy
+        }
+
+        public searchType _searchType;
+
+        private void search_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (TextBox.Text != "")
+            {
+                if(_searchType == searchType.employByRoom)
+                {
+                    Querys.employByRoom(TextBox.Text);
+                }
+            }
+            else
+            {
+                ErrorLabel.Content = "Поле должно быть заполнено";
+            }
         }
     }
 }

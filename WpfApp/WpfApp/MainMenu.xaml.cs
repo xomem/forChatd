@@ -36,6 +36,10 @@ namespace WpfApp
         {
             MainWin.Title = "Главное меню";      
         }
+        public void navigateToSQR()
+        {
+            NavigationService.Navigate(SimpleQueryResult);
+        }
         private void allEmploy_Click(object sender, RoutedEventArgs e)
         {
             //MainFrame.Content = new SimpleQueryResult();
@@ -44,7 +48,7 @@ namespace WpfApp
             MainWin.Title = "Все сотрудники";
         }
 
-
+        
 
         private void allHDD_Click(object sender, RoutedEventArgs e)
         {
@@ -79,6 +83,7 @@ namespace WpfApp
         {
             Search searchWindow = new Search();
             searchWindow.TitleLabel.Content = "Поиск сотрудника по кабинету";
+            searchWindow._searchType = Search.searchType.employByRoom;
             searchWindow.Show();
         }
     }
