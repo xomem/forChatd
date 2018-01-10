@@ -78,6 +78,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddEmployPage.xaml.cs">
+      <DependentUpon>AddEmployPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="employment.cs">
       <DependentUpon>MainModel.tt</DependentUpon>
     </Compile>
@@ -102,6 +105,7 @@
     <Compile Include="Search.xaml.cs">
       <DependentUpon>Search.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SearchEngine.cs" />
     <Compile Include="SimpleQueryResult.xaml.cs">
       <DependentUpon>SimpleQueryResult.xaml</DependentUpon>
     </Compile>
@@ -111,6 +115,10 @@
     <Compile Include="technic.cs">
       <DependentUpon>MainModel.tt</DependentUpon>
     </Compile>
+    <Page Include="AddEmployPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

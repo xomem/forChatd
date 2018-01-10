@@ -34,7 +34,7 @@ namespace WpfApp
         }
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
-            MainWin.Title = "Главное меню";      
+            MainWin.Title = "Главное меню";
         }
         public void navigateToSQR()
         {
@@ -42,13 +42,21 @@ namespace WpfApp
         }
         private void allEmploy_Click(object sender, RoutedEventArgs e)
         {
-            //MainFrame.Content = new SimpleQueryResult();
-            SimpleQueryResult = new SimpleQueryResult(Querys.readEmployers());
-            NavigationService.Navigate(SimpleQueryResult);
-            MainWin.Title = "Все сотрудники";
+            try
+            {
+                var employers = Querys.readEmployers();
+                mainWindow.successfulConnection();
+                SimpleQueryResult = new SimpleQueryResult(employers);
+                NavigationService.Navigate(SimpleQueryResult);
+                MainWin.Title = "Все сотрудники";
+            }
+            catch (Exception ex)
+            {
+                mainWindow.errorConnection(ex);
+            }
         }
 
-        
+
 
         private void allHDD_Click(object sender, RoutedEventArgs e)
         {
@@ -76,15 +84,23 @@ namespace WpfApp
 
         private void addEmploy_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(SimpleQueryResult);
+            MainWin.Title = "Добавить сотрудника";
         }
 
         private void findEmployByRoom_Click(object sender, RoutedEventArgs e)
         {
-            Search searchWindow = new Search();
-            searchWindow.TitleLabel.Content = "Поиск сотрудника по кабинету";
-            searchWindow._searchType = Search.searchType.employByRoom;
-            searchWindow.Show();
+            SearchEngine searchEngine = new SearchEngine();
+            string str;
+            bool hasInput = searchEngine.TryGetName("Поиск сотрудника по номеру кабинета", out str);
+            if (hasInput)
+            {
+                SimpleQueryResult = new SimpleQueryResult(Querys.employByRoom(str));
+            }
+            NavigationService.Navigate(SimpleQueryResult);
+
+
+            //searchWindow._searchType = Search.searchType.employByRoom;
         }
     }
 }

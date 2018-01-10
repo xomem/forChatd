@@ -81,7 +81,7 @@ namespace WpfApp
         }
         public void errorConnection(Exception ex)
         {
-            Status.Content = "Ошибка выполнения запроса";
+            Status.Content = "Ошибка выполнения запроса - " + ex;
         }
         public void connectError(Exception ex)
         {

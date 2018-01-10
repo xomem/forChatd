@@ -21,10 +21,12 @@ namespace WpfApp
 
     public partial class Search : Window
     {
+        public string Input { get; private set; }
 
-        public Search()
+        public Search(string title)
         {
             InitializeComponent();
+            this.Title = title;
         }
         public enum searchType
         {
@@ -41,10 +43,8 @@ namespace WpfApp
 
             if (TextBox.Text != "")
             {
-                if(_searchType == searchType.employByRoom)
-                {
-                    Querys.employByRoom(TextBox.Text);
-                }
+                Input = TextBox.Text;
+                Close();
             }
             else
             {

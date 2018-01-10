@@ -17,46 +17,39 @@ namespace WpfApp
 {
     public class Querys
     {
-        //MainWindow MainWin;
-        //private SimpleQueryResult SimpleQueryResult;
-        //SqlConnection SqlConnection;
 
+        //static string ConnectionAdres = @"Data source=(LocalDB)\MSSQLLocalDB;Attachdbfilename=|DataDirectory|\MainDatabase.mdf;‌​Integrated Security=True;MultipleActiveResultSets=True;";
         static string ConnectionAdres = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Edward\source\repos\WpfApp\WpfApp\MainDatabase.mdf;Integrated Security=True";
+
         public static DataTable employByRoom(string roomNumber)
         {
-            var mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
-            try
-            {
-                //SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM [employment]", ConnectionAdres);
-                SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM [employment] WHERE = " + roomNumber, ConnectionAdres);
+            
+                SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM employment INNER JOIN room ON employment.ID = room.roomNumber WHERE room.roomNumber = " + roomNumber, ConnectionAdres);
                 DataTable dt = new DataTable("Call Reciept");
                 da.Fill(dt);
-                mainWindow.successfulConnection();
                 return dt;
-            }
-            catch (Exception ex)
-            {
-                mainWindow.errorConnection(ex);
-                return null;
-            }
+
         }
         public static DataTable readEmployers()
         {
-            var mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
-            try
-            {
-                SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM [employment]", ConnectionAdres);
-                //SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM [employment] WHERE ID = 9", ConnectionAdres);
-                DataTable dt = new DataTable("Call Reciept");
-                da.Fill(dt);
-                mainWindow.successfulConnection();
-                return dt;
-            }
-            catch (Exception ex)
-            {
-                mainWindow.errorConnection(ex);
-                return null;
-            }
+            SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM [employment]", ConnectionAdres);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            return dt;
+            //var mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            //try
+            //{
+            //    SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM [employment]", ConnectionAdres);
+            //    DataTable dt = new DataTable("Call Reciept");
+            //    da.Fill(dt);
+            //    mainWindow.successfulConnection();
+            //    return dt;
+            //}
+            //catch (Exception ex)
+            //{
+            //    mainWindow.errorConnection(ex);
+            //    return null;
+            //}
         }
         public static DataTable readHDD()
         {
